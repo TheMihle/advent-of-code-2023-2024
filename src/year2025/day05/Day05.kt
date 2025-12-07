@@ -12,7 +12,6 @@ fun main() {
     val ingredientIds = input.subList(input.indexOf("") + 1, input.size).map { it.toLong() }
 
     part1(freshIdRanges, ingredientIds)
-    part2(freshIdRanges)
 }
 
 
