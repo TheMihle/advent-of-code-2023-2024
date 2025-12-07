@@ -31,6 +31,7 @@ bin/
 .DS_Store
 
 input.txt
+test-input.txt
 testinput.txt
 testinput2.txt
 sample.txt
