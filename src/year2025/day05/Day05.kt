@@ -18,8 +18,8 @@ fun main() {
 fun part1(freshIdRanges: List<List<Long>>, ingredientIds: List<Long>) {
     var numberOfFreshIngredientIds = 0
     for (ingredientId in ingredientIds) {
-        for (n in freshIdRanges) {
-            if (ingredientId in n.first()..n.last()) {
+        for (freshIdRange in freshIdRanges) {
+            if (ingredientId in freshIdRange.first()..freshIdRange.last()) {
                 numberOfFreshIngredientIds++
                 break
             }
