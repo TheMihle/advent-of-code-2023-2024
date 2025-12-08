@@ -6,9 +6,9 @@ import java.util.List;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day22 {
     public static void main(String[] args) {
-        List<String> initialSecretNumbers = fileToArray(getInputPath(Part_1.class));
+        List<String> initialSecretNumbers = fileToArray(getInputPath(Day22.class));
 
 //        Convert secret numbers
         List<Long> secretNumbers  = new ArrayList<>();
@@ -16,9 +16,13 @@ public class Part_1 {
             secretNumbers.add(Long.parseLong(initialSecretNumber));
         }
 
+        System.out.println("Day 22, Part 1, Sum of 2000th secret numbers: " + part1(secretNumbers));
+    }
+
+    public static long part1(List<Long> secretNumbers) {
 //        Calculate 2000th secret number
         for (int i = 0; i < 2000; i++) {
-            secretNumbers.replaceAll(Part_1::calcSecretNumber);
+            secretNumbers.replaceAll(Day22::calcSecretNumber);
         }
 
 //        Calculate sum of secret numbers
@@ -26,8 +30,7 @@ public class Part_1 {
         for (Long secretNumber : secretNumbers) {
             sumSecretNumber += secretNumber;
         }
-
-        System.out.println("Day 22, Part 1, Sum of 2000th secret numbers: " + sumSecretNumber);
+        return sumSecretNumber;
     }
 
     private static long mix(long value, long secretNumber){

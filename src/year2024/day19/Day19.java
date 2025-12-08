@@ -5,14 +5,33 @@ import java.util.*;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_2 {
+public class Day19 {
     public static void main(String[] args) {
-        List<String> designs = fileToArray(getInputPath(Part_2.class));
+        List<String> designs = fileToArray(getInputPath(Day19.class));
 
-//        Extract patterns, add to HashSet
-        String[] patterns = designs.getFirst().split(", " );
+//        Extract patterns
+        String[] patterns = designs.getFirst().split(", ");
         designs.removeFirst();
         designs.removeFirst();
+
+        System.out.println("Day 19, Part 1, Number of possible designs: " + part1(designs, patterns));
+        System.out.println("Day 19, Part 2, Number of possible design combinations: " + part2(designs, patterns));
+    }
+
+    public static int part1(List<String> designs, String[] patterns) {
+//        Creates regex pattern for the patterns
+        String pattern = "(" + String.join("|", patterns) + ")*";
+
+//        Counts possible designs with provided patterns
+        int possibleDesings = 0;
+        for (String design : designs) {
+            if (design.matches(pattern)) possibleDesings++;
+        }
+        return possibleDesings;
+    }
+
+    public static long part2(List<String> designs, String[] patterns) {
+//       Add patterns to HashSet
         Set<String> hashPatterns = new HashSet<>(Arrays.asList(patterns));
 
         int longestPattern = 0;
@@ -28,7 +47,7 @@ public class Part_2 {
             possibleCombinations += findMatch(design, hashPatterns, memory, longestPattern);
         }
 
-        System.out.println("Day 19, Part 2, Number of possible design combinations: " + possibleCombinations);
+        return possibleCombinations;
     }
 
 //    Recursive method that finds matches at the start of the design, calls itself recursively on the next part of the design.

@@ -7,9 +7,9 @@ import java.util.List;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1_2 {
+public class Day01 {
     public static void main(String[] args) {
-        List<String> inputArray = fileToArray(getInputPath(Part_1_2.class));
+        List<String> inputArray = fileToArray(getInputPath(Day01.class));
 
 //        Creates two arrays for the two lists
         List<Integer> leftList = new ArrayList<>();

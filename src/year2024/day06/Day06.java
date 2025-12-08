@@ -4,10 +4,14 @@ import static common.DataStructureUtils.rangeCheck;
 import static common.ImportFile.fileTo2DArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day06 {
     public static void main(String[] args) {
-        String[][] inputArray = fileTo2DArray(getInputPath(Part_1.class), "");
+        String[][] inputArray = fileTo2DArray(getInputPath(Day06.class), "");
 
+        System.out.println("Day 6, Part 1, Number of distinct positions: " + part1(inputArray));
+    }
+
+    public static int part1(String[][] inputArray) {
 //        Array for visited coordinates
         int[][] visitedArray = new int[inputArray.length][inputArray[0].length];
 
@@ -44,14 +48,12 @@ public class Part_1 {
             coords[1] += y;
         }
 
-//        Outputs number of visited positions
-        int numbVisited = countVisited(visitedArray);
-        System.out.println("Day 6, Part 1, Number of distinct positions: " + numbVisited);
+        //        Outputs number of visited positions
+        return countVisited(visitedArray);
     }
 
-
 //    Finds the coordinates for starting
-    public static void findStart(String[][] inputArray, int [] coords) {
+    private static void findStart(String[][] inputArray, int [] coords) {
         while(coords[0]++ < inputArray.length) {
             for (int i = 0; i < inputArray[coords[0]].length; i++) {
                 if (inputArray[coords[0]][i].equals("^")) {
@@ -63,7 +65,7 @@ public class Part_1 {
     }
 
 //    Calculates total number of positions visited based on array
-    public static int countVisited(int[][] visitedArray) {
+    private static int countVisited(int[][] visitedArray) {
         int numVisited = 0;
 
         for (int[] ints : visitedArray) {

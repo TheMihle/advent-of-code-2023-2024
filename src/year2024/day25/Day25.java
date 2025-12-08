@@ -8,9 +8,9 @@ import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
 // I feel like this code isn't the best code, but it works.
-public class Part_1 {
+public class Day25 {
     public static void main(String[] args) {
-        List<String> keyLockInput = fileToArray(getInputPath(Part_1.class));
+        List<String> keyLockInput = fileToArray(getInputPath(Day25.class));
 
 //        Split the locks/keys
         List<List<String>> keyLockArray = new ArrayList<>();

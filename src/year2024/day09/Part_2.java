@@ -2,48 +2,19 @@ package year2024.day09;
 
 import java.util.*;
 
-import static common.ImportFile.fileToSplittedString;
-import static common.PathConstructor.getInputPath;
+import static year2024.day09.Day09.calcCheckSum;
+import static year2024.day09.Day09.reconstructDisk;
 
 public class Part_2 {
-    public static void main(String[] args) {
-
-//        Import file as array and convert to int array
-        String[] inputDiskMap = fileToSplittedString(getInputPath(Part_2.class));
-
-        int[] diskMap = new int[inputDiskMap.length];
-        for (int i = 0; i < inputDiskMap.length; i++) {
-            diskMap[i] = Integer.parseInt(inputDiskMap[i]);
-        }
-
-//        Store index of start of each block
+    public static long part2(int[] diskMap) {
+        //        Store index of start of each block
         Map<Integer, Integer> blockStartIndex = CreateBlockStartIndex(diskMap);
 
         List<Integer> disk = reconstructDisk(diskMap);
         fragmentDisk(disk, diskMap, blockStartIndex);
 
 //        Calculate checksum
-        long ckeckSum = 0;
-        for (int i = 0; i < disk.size(); i++) {
-            if ( disk.get(i) != null) ckeckSum += (long) i * disk.get(i);
-        }
-
-        System.out.println("Day 9, Part 2, Disk Checksum: " + ckeckSum);
-    }
-
-//    Reconstruct disk from diskMap
-    private static List<Integer> reconstructDisk(int[] diskMap) {
-        List<Integer> disk = new ArrayList<>();
-        int nextBlockId = 0;
-
-        for (int i = 0; i < diskMap.length; i++) {
-            for (int j = 0; j < diskMap[i]; j++) {
-                if (i % 2 == 0) disk.add(nextBlockId);
-                else disk.add(null);
-            }
-            if (i % 2 == 0) nextBlockId++;
-        }
-        return disk;
+        return calcCheckSum(disk);
     }
 
     private static Map<Integer, Integer> CreateBlockStartIndex(int[] inputArray) {

@@ -10,9 +10,9 @@ import java.util.Set;
 import static common.ImportFile.fileTo2DArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day16 {
     public static void main(String[] args) {
-        String[][] mazeMap = fileTo2DArray(getInputPath(Part_1.class));
+        String[][] mazeMap = fileTo2DArray(getInputPath(Day16.class));
 
         PriorityQueue<PathState> pathFindingPriorityQueue = new PriorityQueue<>();
         pathFindingPriorityQueue.add(new PathState(findStart(mazeMap)));
