@@ -13,12 +13,12 @@ fun main() {
     val joltsPart1 = calculateJolts(convertedInput, 2)
     val joltsPart2 = calculateJolts(convertedInput, 12)
 
-    println("Day 3, Part 1, Result: $joltsPart1" )
-    println("Day 3, Part 2, Result: $joltsPart2" )
+    println("Day 3, Part 1, Result: $joltsPart1")
+    println("Day 3, Part 2, Result: $joltsPart2")
 }
 
 // Takes in list of the battery banks and calculates max jolts based on number of banks needed.
-fun calculateJolts(input: List<List<Int>>, numberOfBanks: Int): Long {
+private fun calculateJolts(input: List<List<Int>>, numberOfBanks: Int): Long {
     var totalJolts = 0L
     for (list in input) {
         var nextFrom = 0

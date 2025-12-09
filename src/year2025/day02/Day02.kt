@@ -18,7 +18,7 @@ fun main() {
 
 // Divides the number in two and checks if two parts is equal. Sums together if true.
 // Faster than part 2 regex solution
-fun part1(ranges: List<List<Long>>): Long {
+private fun part1(ranges: List<List<Long>>): Long {
     var sumOfIds = 0L
     for (range in ranges) {
         for (number in range.first()..range.last()){
@@ -37,7 +37,7 @@ fun part1(ranges: List<List<Long>>): Long {
 
 // Uses regex to a check if a value is repetition of the same combination of digits 2+ times.
 // Sums together if true.
-fun part2(ranges: List<List<Long>>): Long {
+private fun part2(ranges: List<List<Long>>): Long {
     var sumOfIds = 0L
     for (range in ranges) {
         for (number in range.first()..range.last()){

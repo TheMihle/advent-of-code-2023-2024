@@ -10,7 +10,7 @@ fun main() {
     part2(input)
 }
 
-fun part1(input: List<String>) {
+private fun part1(input: List<String>) {
     // Convert to List<List>, extract operators and convert to long
     val splitInput = input.map { it.trim().split("\\s+".toRegex()) }.toMutableList()
     val operators = splitInput.removeLast()
@@ -24,13 +24,13 @@ fun part1(input: List<String>) {
     println("Day 6, Part 1, Result: $result")
 }
 
-fun part2(input: List<String>) {
+private fun part2(input: List<String>) {
 
     println("PART 2 NOT IMPLEMENTED")
 }
 
 
-fun reduceListWithOperator(operator: String, elements: List<Long>): Long {
+private fun reduceListWithOperator(operator: String, elements: List<Long>): Long {
     return when (operator) {
         "*" -> elements.reduce { acc, elem -> acc * elem }
         "+" -> elements.reduce { acc, elem -> acc + elem }

@@ -22,7 +22,7 @@ fun main() {
 }
 
 // Count number of times the position ends at 0
-fun part1(rotations: List<Int>): Int {
+private fun part1(rotations: List<Int>): Int {
     var position = 50
     var numberOfZeroes = 0
     for (rotation in rotations) {
@@ -33,7 +33,7 @@ fun part1(rotations: List<Int>): Int {
 }
 
 // Count number of times the position passes 0
-fun part2(rotations: List<Int>): Int {
+private fun part2(rotations: List<Int>): Int {
     var position = 50
     var numberOfZeroes = 0
     for (rotation in rotations) {
