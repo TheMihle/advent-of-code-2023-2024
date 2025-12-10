@@ -30,6 +30,7 @@ public class Day06 {
 //            Checks next square and changes direction if needed
             if (rangeCheck(inputArray, coords[0] + x, coords[1] + y) &&
                     inputArray[coords[0] + x][coords[1] + y].equals("#")) {
+
                 if (direction == 3) direction = 0;
                 else direction++;
 
@@ -53,7 +54,7 @@ public class Day06 {
     }
 
 //    Finds the coordinates for starting
-    private static void findStart(String[][] inputArray, int [] coords) {
+    static void findStart(String[][] inputArray, int[] coords) {
         while(coords[0]++ < inputArray.length) {
             for (int i = 0; i < inputArray[coords[0]].length; i++) {
                 if (inputArray[coords[0]][i].equals("^")) {
@@ -65,7 +66,7 @@ public class Day06 {
     }
 
 //    Calculates total number of positions visited based on array
-    private static int countVisited(int[][] visitedArray) {
+    static int countVisited(int[][] visitedArray) {
         int numVisited = 0;
 
         for (int[] ints : visitedArray) {

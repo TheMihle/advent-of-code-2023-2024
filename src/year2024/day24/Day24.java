@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day24 {
     public static void main(String[] args) {
-        List<String> initialGateValues = fileToArray(getInputPath(Part_1.class));
+        List<String> initialGateValues = fileToArray(getInputPath(Day24.class));
 
 //        Extract gate values
         Map<String, Boolean> gateValues = new HashMap<>();
@@ -37,17 +37,7 @@ public class Part_1 {
                 "Decimal output: " + Long.parseLong(output, 2));
     }
 
-
-    private static boolean gateOperation(String operation, boolean bol1, boolean bol2) {
-        return switch (operation) {
-            case "OR" -> bol1 | bol2;
-            case "XOR" -> bol1 ^ bol2;
-            case "AND" -> bol1 & bol2;
-            default -> throw new UnsupportedOperationException("Operation not found");
-        };
-    }
-
-    private static void calcGateValues(Map<String, Boolean> gateValues, List<List<String>> gates) {
+    static void calcGateValues(Map<String, Boolean> gateValues, List<List<String>> gates) {
         boolean change = true;
         while (change) {
             change = false;
@@ -60,7 +50,16 @@ public class Part_1 {
         }
     }
 
-    private static String gateToBinary(Map<String, Boolean> gateValues, String startsWith){
+    private static boolean gateOperation(String operation, boolean bol1, boolean bol2) {
+        return switch (operation) {
+            case "OR" -> bol1 | bol2;
+            case "XOR" -> bol1 ^ bol2;
+            case "AND" -> bol1 & bol2;
+            default -> throw new UnsupportedOperationException("Operation not found");
+        };
+    }
+
+    static String gateToBinary(Map<String, Boolean> gateValues, String startsWith){
         return gateValues.entrySet().stream()
                 .filter(entry -> entry.getKey().startsWith(startsWith))
                 .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))

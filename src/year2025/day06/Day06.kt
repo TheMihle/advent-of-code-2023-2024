@@ -14,10 +14,10 @@ private fun part1(input: List<String>) {
     // Convert to List<List>, extract operators and convert to long
     val splitInput = input.map { it.trim().split("\\s+".toRegex()) }.toMutableList()
     val operators = splitInput.removeLast()
-    val convertedInput = splitInput.map { it.map { it -> it.toLong() } }
+    val convertedInput = splitInput.map { it -> it.map { it.toLong() } }
 
     var result = 0L
-    for (i in 0..convertedInput.first().size - 1) {
+    for (i in 0..<convertedInput.first().size) {
         result += reduceListWithOperator(operators[i], convertedInput.map { it[i] })
     }
 

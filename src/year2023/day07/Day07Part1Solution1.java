@@ -12,19 +12,12 @@ import static common.PathConstructor.getInputPath;
 
 // First solution/attempt, using RegEx, fixed bug after completing attempt/solution 2. Solution 1 is probably better
 // Should have sorted before doing RegEx
-public class Part_1_Solution_1 {
+public class Day07Part1Solution1 {
     public static void main(String[] arg){
-        List<String> inputLines = fileToArray(getInputPath(Part_1_Solution_1.class));
+        List<String> inputLines = fileToArray(getInputPath(Day07Part1Solution1.class));
 
 //        Convert array to an 2D array
-        List<ArrayList<String>> cardArray = new ArrayList<>();
-        for (int i = 0; i < inputLines.size(); i++) {
-            String[] tempArray = inputLines.get(i).split(" ");
-            cardArray.add(new ArrayList<>());
-            for (String string : tempArray) {
-                cardArray.get(i).add(string);
-            }
-        }
+        List<ArrayList<String>> cardArray = arrayTo2DArray(inputLines);
 
 //        Patterns for recognizing number of letters.
         Pattern fivePattern = Pattern.compile("([A-Z1-9]).{0,3}\\1.{0,3}\\1.{0,3}\\1.{0,3}\\1");
@@ -58,14 +51,11 @@ public class Part_1_Solution_1 {
 
 //                Four of a kind/full house
                 twoMatcher.find();
-                if (!twoMatcher.group(1).equals(threeMatcher.group(1))){
+                do {
+                    if (!twoMatcher.group(1).equals(threeMatcher.group(1))) {
                         key += 10000000000L;
                     }
-                while (twoMatcher.find(twoMatcher.end(1))){
-                    if (!twoMatcher.group(1).equals(threeMatcher.group(1))){
-                        key += 10000000000L;
-                    }
-                }
+                } while (twoMatcher.find(twoMatcher.end(1)));
 
 //                One/Two pairs
             } else if (twoMatcher.find(0)) {
@@ -80,18 +70,36 @@ public class Part_1_Solution_1 {
         }
 
 //        Calculates sum based on bid amount and rank
+        long totalWinnings = calculateWinnings(handValueBidMap);
+
+        System.out.println("Day 7, Part 1, Total winnings: " + totalWinnings);
+    }
+
+    static List<ArrayList<String>> arrayTo2DArray(List<String> inputLines) {
+        List<ArrayList<String>> cardArray = new ArrayList<>();
+        for (int i = 0; i < inputLines.size(); i++) {
+            String[] tempArray = inputLines.get(i).split(" ");
+            cardArray.add(new ArrayList<>());
+            for (String string : tempArray) {
+                cardArray.get(i).add(string);
+            }
+        }
+        return cardArray;
+    }
+
+    //    Calculates sum based on bid amount and rank
+    static long calculateWinnings(Map<Long, Integer> handValueBidMap) {
         int rank = 1;
         long totalWinnings = 0L;
         for (Map.Entry<Long, Integer> entry : handValueBidMap.entrySet()){
             totalWinnings += (long) entry.getValue() * rank;
             rank++;
         }
-
-        System.out.println("Day 7, Part 1, Total winnings: " + totalWinnings);
+        return totalWinnings;
     }
 
 //    Calculates a hand value based on the individual cards only
-    private static long handValue(String hand){
+    static long handValue(String hand){
         long handValue = 0;
         int multiplier = 100000000;
         for (char character : hand.toCharArray()){
@@ -102,7 +110,7 @@ public class Part_1_Solution_1 {
     }
 
 //    Switch for the int value of cards
-    private static int characterValue(char character){
+     static int characterValue(char character){
         return switch (character){
             case 'A' -> 14;
             case 'K' -> 13;

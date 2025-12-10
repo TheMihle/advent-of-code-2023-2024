@@ -4,29 +4,23 @@ import java.util.*;
 
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
+import static year2023.day07.Day07Part1Solution1.arrayTo2DArray;
+import static year2023.day07.Day07Part1Solution1.calculateWinnings;
 
 // May be overcomplicated for what it needs to, but it works
-public class Part_2 {
+public class Day07Part2 {
     public static void main(String[] arg){
-        List<String> inputLines = fileToArray(getInputPath(Part_2.class));
+        List<String> inputLines = fileToArray(getInputPath(Day07Part2.class));
 
 //        Convert array to an 2D array
-        List<ArrayList<String>> cardArray = new ArrayList<>();
-        for (int i = 0; i < inputLines.size(); i++) {
-            String[] tempArray = inputLines.get(i).split(" ");
-            cardArray.add(new ArrayList<>());
-            for (String string : tempArray) {
-                cardArray.get(i).add(string);
-            }
-        }
+        List<ArrayList<String>> cardArray = arrayTo2DArray(inputLines);
 
 //        Sorted map for hand value and bids
         Map<Long, Integer> handBidMap = new TreeMap<>();
 
         for (List<String> stringArray : cardArray) {
-
 //            Hashmap for possible characters
-            Map<Character, Integer> cardMap = generateCardMap(0);
+            Map<Character, Integer> cardMap = generateCardMap();
 
 //            Counts characters and put it in to hashmap
             for (char c : stringArray.getFirst().toCharArray()){
@@ -85,14 +79,9 @@ public class Part_2 {
         }
 
 //        Calculates sum based on bid amount and rank
-        int rank = 1;
-        long totalWinnings = 0L;
-        for (Map.Entry<Long, Integer> entry : handBidMap.entrySet()){
-            totalWinnings += (long) entry.getValue() * rank;
-            rank++;
-        }
+        long totalWinnings = calculateWinnings(handBidMap);
 
-        System.out.println( "Day 7, Part 1, Total winnings: " + totalWinnings);
+        System.out.println("Day 7, Part 2, Total winnings: " + totalWinnings);
     }
 
 //    Calculates a hand value based on the individual cards only
@@ -118,12 +107,12 @@ public class Part_2 {
         };
     }
 
-    private static Map<Character, Integer> generateCardMap(Integer value) {
+    private static Map<Character, Integer> generateCardMap() {
         char[] cards = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
 
         Map<Character, Integer> cardMap = new HashMap<>();
         for (char card : cards) {
-            cardMap.put(card, value);
+            cardMap.put(card, 0);
         }
         return cardMap;
     }

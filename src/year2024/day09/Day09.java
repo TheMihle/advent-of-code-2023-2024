@@ -5,7 +5,7 @@ import java.util.List;
 
 import static common.ImportFile.fileToSplittedString;
 import static common.PathConstructor.getInputPath;
-import static year2024.day09.Part_2.part2;
+import static year2024.day09.Day09Part2.part2;
 
 public class Day09 {
     public static void main(String[] args) {

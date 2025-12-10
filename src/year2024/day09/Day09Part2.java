@@ -5,7 +5,7 @@ import java.util.*;
 import static year2024.day09.Day09.calcCheckSum;
 import static year2024.day09.Day09.reconstructDisk;
 
-public class Part_2 {
+public class Day09Part2 {
     public static long part2(int[] diskMap) {
         //        Store index of start of each block
         Map<Integer, Integer> blockStartIndex = CreateBlockStartIndex(diskMap);

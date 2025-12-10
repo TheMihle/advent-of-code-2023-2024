@@ -6,10 +6,24 @@ import java.util.Map;
 import static common.ImportFile.fileToSplittedString;
 import static common.PathConstructor.getInputPath;
 
-public class Part_2 {
+public class Day15 {
     public static void main(String[] args) {
-        String[] sequence = fileToSplittedString(getInputPath(Part_2.class), ",");
+        String[] sequence = fileToSplittedString(getInputPath(Day15.class), ",");
 
+        System.out.println("Day 15, Part 1, Sum of the results: " + part1(sequence));
+        System.out.println("Day 15, Part 2, Focusing power of lens configuration : " + part2(sequence));
+    }
+
+    public static int part1(String[] sequence) {
+        int sum = 0;
+        for (String step : sequence) {
+//            Calculates sum of hash value of a step
+            sum += labelHash(step);
+        }
+        return sum;
+    }
+
+    public static int part2(String[] sequence) {
         int focusingPower = 0;
 
 //        Array of linkedHashMap for boxes with sets of labels and lenses in them.
@@ -20,7 +34,6 @@ public class Part_2 {
         }
 
         for (String step : sequence) {
-
 //            Adds lens to box
             if (step.contains("=")) {
                 String label = step.split("=")[0];
@@ -42,12 +55,11 @@ public class Part_2 {
                 iteration++;
             }
         }
-
-        System.out.println("Day 15, Part 2, Focusing power of lens configuration : " + focusingPower);
+        return focusingPower;
     }
 
 //    Calculates hash value of a label
-    public static int labelHash(String label) {
+    private static int labelHash(String label) {
         int value = 0;
         for (char character : label.toCharArray()) {
             value += character;

@@ -6,20 +6,14 @@ import java.util.*;
 
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
+import static year2023.day07.Day07Part1Solution1.*;
 
-public class Part_1_Solution_2 {
+public class Day07Part1Solution2 {
     public static void main(String[] arg){
-        List<String> inputLines = fileToArray(getInputPath(Part_1_Solution_2.class));
+        List<String> inputLines = fileToArray(getInputPath(Day07Part1Solution2.class));
 
 //        Convert array to an 2D array
-        List<ArrayList<String>> cardArray = new ArrayList<>();
-        for (int i = 0; i < inputLines.size(); i++) {
-            String[] tempArray = inputLines.get(i).split(" ");
-            cardArray.add(new ArrayList<>());
-            for (String string : tempArray) {
-                cardArray.get(i).add(string);
-            }
-        }
+        List<ArrayList<String>> cardArray = arrayTo2DArray(inputLines);
 
 //        Sorted map for hand value and bids
         Map<Long, Integer> handValueBidMap = new TreeMap<>();
@@ -27,9 +21,9 @@ public class Part_1_Solution_2 {
         for (List<String> stringArray : cardArray) {
 
 //            Hashmap for possible characters
-            Map<Character, Integer> cardMap = generateCardMap(0);
+            Map<Character, Integer> cardMap = generateCardMap();
 
-//            Counts characeters and put it in to hashmap
+//            Counts characters and put it in to hashmap
             for (char c : stringArray.getFirst().toCharArray()){
                 cardMap.put(c, cardMap.get(c)+1);
             }
@@ -67,45 +61,17 @@ public class Part_1_Solution_2 {
         }
 
 //        Calculates sum based on bid amount and rank
-        int rank = 1;
-        long totalWinnings = 0L;
-        for (Map.Entry<Long, Integer> entry : handValueBidMap.entrySet()){
-            totalWinnings += (long) entry.getValue() * rank;
-            rank++;
-        }
+        long totalWinnings = calculateWinnings(handValueBidMap);
 
         System.out.println("Day 7, Part 1, Total winnings: " + totalWinnings);
     }
 
-//    Calculates a hand value based on the individual cards only
-    private static long handValue(String hand){
-        long handValue = 0;
-        int multiplier = 100000000;
-        for (char character : hand.toCharArray()){
-            handValue += (long )characterValue(character) * multiplier;
-            multiplier /= 100;
-        }
-        return handValue;
-    }
-
-//    Switch for the int value of cards
-    private static int characterValue(char character){
-        return switch (character){
-            case 'A' -> 14;
-            case 'K' -> 13;
-            case 'Q' -> 12;
-            case 'J' -> 11;
-            case 'T' -> 10;
-            default -> Character.getNumericValue(character);
-        };
-    }
-
-    private static Map<Character, Integer> generateCardMap(Integer value) {
+    private static Map<Character, Integer> generateCardMap() {
         char[] cards = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
 
         Map<Character, Integer> cardMap = new HashMap<>();
         for (char card : cards) {
-            cardMap.put(card, value);
+            cardMap.put(card, 0);
         }
         return cardMap;
     }

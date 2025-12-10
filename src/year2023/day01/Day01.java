@@ -5,10 +5,14 @@ import java.util.regex.*;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_2 {
+public class Day01 {
     public static void main(String[] args) {
-        List<String> inputLines = fileToArray(getInputPath(Part_2.class));
+        List<String> inputLines = fileToArray(getInputPath(Day01.class));
 
+        System.out.println("Day 1, Part 2, Sum of calibration values: " + part2(inputLines));
+    }
+
+    public static int part2(List<String> inputLines) {
 //        Pattern for what to find
         Pattern pattern = Pattern.compile("[0-9]|one|two|three|four|five|six|seven|eight|nine");
 
@@ -37,11 +41,10 @@ public class Part_2 {
                 System.out.println("Error, character in array: " + e);
             }
         }
-
-        System.out.println("Day 1, Part 2, Sum of calibration values: " + calibrationValueSum);
+        return calibrationValueSum;
     }
 
-//    Converts letter numbers to numbers
+    //    Converts letter numbers to numbers
     static String numberSwitch(String string){
         return switch (string){
             case "one" -> "1";

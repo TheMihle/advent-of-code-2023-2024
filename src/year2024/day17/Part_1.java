@@ -56,7 +56,7 @@ public class Part_1 {
     }
 
 //    Divides register A by register or operand based on operand
-    private static long divRegAByTwoPowOperand(int operand, long regisA, long regisB, long regisC) {
+    static long divRegAByTwoPowOperand(int operand, long regisA, long regisB, long regisC) {
         return switch (operand) {
             case 4 -> (long) (regisA / Math.pow(2 , regisA));
             case 5 -> (long) (regisA / Math.pow(2 , regisB));
@@ -66,7 +66,7 @@ public class Part_1 {
     }
 
 //    Register or operand modulo 8 based on operand
-    private static long operandModEight(int operand, long regisA, long regisB, long regisC) {
+    static long operandModEight(int operand, long regisA, long regisB, long regisC) {
         return switch (operand) {
             case 4 -> regisA % 8;
             case 5 -> regisB % 8;

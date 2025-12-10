@@ -9,10 +9,14 @@ import java.util.regex.Pattern;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day08 {
     public static void main(String[] args){
-        List<String> inputLines = fileToArray(getInputPath(Part_1.class));
+        List<String> inputLines = fileToArray(getInputPath(Day08.class));
 
+        System.out.println("Day 8, Part 1, Number of steps required to reach ZZZ: " + part1(inputLines));
+    }
+
+    private static int part1(List<String> inputLines) {
 //        Patterns for recognizing 3 letters
         Pattern pattern = Pattern.compile("[A-Z]{3}");
         Matcher matcher;
@@ -57,7 +61,6 @@ public class Part_1 {
             }
             if (nextKey.equals("ZZZ")) end = true;
         }
-
-        System.out.println("Day 8, Part 1, Number of steps required to reach ZZZ: " + stepsCount);
+        return stepsCount;
     }
 }

@@ -10,12 +10,12 @@ fun main() {
     
     map.addFirst((1..map.first().size).map { "." }.toMutableList())     // Top
     map.addLast((1..map.first().size).map { "." }.toMutableList())      // Bottom
-    map.map { it[0] = "."; it[it.lastIndex] = "."; }                              // Sides
+    map.forEach { it[0] = "."; it[it.lastIndex] = "."; }                              // Sides
 
     println("Day 4, Part 1, Number of rolls that can be accessed: ${part1(map)}")
     println("Day 4, Part 2, Number of rolls that can be removed: ${part2(map)}")
 
-    map.map { println(it) }
+    map.forEach { println(it) }
 }
 
 // Count number of rolls that can be moved without removing any.
@@ -38,8 +38,8 @@ private fun part2(map: MutableList<MutableList<String>>): Int{
 // Removes or checks for rolls to be removed. Remove(default) mode require multiple passes.
 private fun removeRolls(map: MutableList<MutableList<String>>,  checkMode: Boolean = false): Int {
     var numRemoved = 0
-    for (y in 1..(map.lastIndex - 1)) {
-        for (x in 1..(map.first().lastIndex - 1)) {
+    for (y in 1..<map.lastIndex) {
+        for (x in 1..<map.first().lastIndex) {
             if (map[y][x] == "@" && countNearbyRolls(map, x, y) < 4) {
                 if (!checkMode) map[y][x] = "."
                 numRemoved++

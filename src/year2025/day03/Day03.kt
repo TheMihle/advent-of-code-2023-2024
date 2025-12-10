@@ -8,7 +8,7 @@ fun main() {
     val input = Path("src/year2025/day03/input.txt").readLines()
 
     // Convert to List<List<Int>>
-    val convertedInput = input.asSequence().map { it -> it.toList().map { it -> it.digitToInt() } }.toList()
+    val convertedInput = input.asSequence().map { it -> it.toList().map { it.digitToInt() } }.toList()
 
     val joltsPart1 = calculateJolts(convertedInput, 2)
     val joltsPart2 = calculateJolts(convertedInput, 12)
@@ -26,7 +26,7 @@ private fun calculateJolts(input: List<List<Int>>, numberOfBanks: Int): Long {
         for (banksLeft in numberOfBanks  downTo 1) {
             val sublist = list.subList(nextFrom, list.size - banksLeft + 1)
             val value = max(sublist)
-            nextFrom = sublist.indexOf(value) + nextFrom + 1
+            nextFrom += sublist.indexOf(value) + 1
             jolts += value.toString()
         }
 

@@ -6,10 +6,14 @@ import java.util.regex.Pattern;
 import static common.ImportFile.fileToArray;
 import static common.PathConstructor.getInputPath;
 
-public class Part_1 {
+public class Day03 {
     public static void main(String[] args) {
-        List<String> inputLines = fileToArray(getInputPath(Part_1.class));
+        List<String> inputLines = fileToArray(getInputPath(Day03.class));
 
+        System.out.println("Day 3, Part 1, Sum of part numbers: " + part1(inputLines));
+    }
+
+    public static int part1(List<String> inputLines) {
 //        Pattern for what to find
         Pattern numberPattern = Pattern.compile("\\d+");
         Pattern symbolPattern = Pattern.compile("[^\\d.]");
@@ -45,7 +49,6 @@ public class Part_1 {
                 if (matcherSymbol.find()) partNumberSum += Integer.parseInt(matcherNumber.group());
             }
         }
-
-        System.out.println("Day 3, Part 1, Sum of part numbers: " + partNumberSum);
+        return partNumberSum;
     }
 }
