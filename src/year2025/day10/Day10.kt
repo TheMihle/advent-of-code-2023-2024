@@ -16,6 +16,7 @@ fun main() {
     println("Day 10, Part 1, Minimum numer of button presses required: ${part1(machineList)}")
 }
 
+// TODO: May be able to speed up more by using just byte like "0110" instead of a list
 fun part1(machineList: List<Machine>): Int {
     var minTotalButtonPresses = 0
 
