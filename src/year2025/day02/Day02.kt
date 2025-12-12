@@ -12,8 +12,9 @@ fun main() {
     val sumPart1 = part1(ranges)
     val sumPart2 = part2(ranges)
 
-    println("Day 2, Part 1, Sum of invalid IDs: $sumPart1" )
-    println("Day 2, Part 2, Sum of invalid IDs: $sumPart2" )
+     println("Day 2:")
+    println("Part 1, Sum of invalid IDs: $sumPart1" )
+    println("Part 2, Sum of invalid IDs: $sumPart2" )
 }
 
 // Divides the number in two and checks if two parts is equal. Sums together if true.

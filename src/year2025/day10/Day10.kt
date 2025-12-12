@@ -13,7 +13,8 @@ fun main() {
             joltages = machine.removeLast().split(",").map { it.toInt() },
             buttons = machine.map{ button -> button.split(",").map { it.toInt() } }) }
 
-    println("Day 10, Part 1, Minimum numer of button presses required: ${part1(machineList)}")
+    println("Day 10:")
+    println("Part 1, Minimum numer of button presses required: ${part1(machineList)}")
 }
 
 // TODO: May be able to speed up more by using just byte like "0110" instead of a list

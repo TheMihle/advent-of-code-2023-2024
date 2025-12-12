@@ -12,8 +12,9 @@ fun main() {
     map.addLast((1..map.first().size).map { "." }.toMutableList())      // Bottom
     map.forEach { it[0] = "."; it[it.lastIndex] = "."; }                              // Sides
 
-    println("Day 4, Part 1, Number of rolls that can be accessed: ${part1(map)}")
-    println("Day 4, Part 2, Number of rolls that can be removed: ${part2(map)}")
+    println("Day 4:")
+    println("Part 1, Number of rolls that can be accessed: ${part1(map)}")
+    println("Part 2, Number of rolls that can be removed: ${part2(map)}")
 
     map.forEach { println(it) }
 }

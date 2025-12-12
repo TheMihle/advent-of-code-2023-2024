@@ -17,8 +17,9 @@ fun main() {
     val passwordPart1 = part1(convertedInput)
     val passwordPart2 = part2(convertedInput)
 
-    println("Day 1, Part 1, Number of times dial is pointing at 0: $passwordPart1")
-    println("Day 1, Part 2, Number of times dial is passing 0: $passwordPart2")
+    println("Day 1:")
+    println("Part 1, Number of times dial is pointing at 0: $passwordPart1")
+    println("Part 2, Number of times dial is passing 0: $passwordPart2")
 }
 
 // Count number of times the position ends at 0

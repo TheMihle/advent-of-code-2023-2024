@@ -30,9 +30,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-input.txt
-test-input.txt
-testinput.txt
-testinput2.txt
+*input.txt
+*input2.txt
 sample.txt
 mermaid.md

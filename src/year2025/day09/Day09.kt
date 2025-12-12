@@ -12,7 +12,8 @@ fun main() {
     val convertedCoords = input.map { it -> it.split(",").map { it.toInt() } }
                                .map { Pair(it.first(), it.last()) }
 
-    println("Day 9, Part 1, Largest area: ${part1(convertedCoords)}")
+    println("Day 9:")
+    println("Part 1, Largest area: ${part1(convertedCoords)}")
 }
 
 // Calculates the largest area where two points is the corners.
