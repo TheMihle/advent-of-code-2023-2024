@@ -32,7 +32,7 @@ fun part1(machineList: List<Machine>): Int {
 }
 
 // Recursively finds the shortest amount of button presses to get the lightDiagram output. Uses Map as memory between steps.
-fun pressButtons(memory: MutableMap<List<Boolean>, Int>, machine: Machine, lights: List<Boolean>, maxDepth: Int, numberOfPresses: Int = 0): Int {
+private fun pressButtons(memory: MutableMap<List<Boolean>, Int>, machine: Machine, lights: List<Boolean>, maxDepth: Int, numberOfPresses: Int = 0): Int {
     if (numberOfPresses > maxDepth) return Int.MAX_VALUE
     if (lights == machine.lightDiagram) return 0
     if (memory.contains(lights)) return memory.getValue(lights)
