@@ -20,29 +20,33 @@ fun part1(machineList: List<Machine>): Int {
     var minTotalButtonPresses = 0
 
     for (machine in machineList) {
-        var minNumPresses = 6
+        val minNumPresses = 10
+        val memory = mutableMapOf<List<Boolean>, Int>()
         val lights = MutableList(machine.lightDiagram.size) { false }
 
-        for (index in machine.buttons.indices) {
-            val numPresses = pressButtons(machine, lights,minNumPresses, pressButton = index )
-            if (numPresses < minNumPresses) minNumPresses = numPresses
-        }
-        minTotalButtonPresses += minNumPresses
+        val numPresses = pressButtons(memory, machine, lights,minNumPresses )
+        minTotalButtonPresses += numPresses
     }
     return minTotalButtonPresses
 }
 
-fun pressButtons(machine: Machine, lights: MutableList<Boolean>, previousMin: Int, pressButton: Int, numberOfPresses: Int = 0): Int {
-    if (lights == machine.lightDiagram || numberOfPresses > previousMin) return numberOfPresses
-    val newLights = lights.toMutableList()
+// Recursively finds the shortest amount of button presses to get the lightDiagram output. Uses Map as memory between steps.
+fun pressButtons(memory: MutableMap<List<Boolean>, Int>, machine: Machine, lights: List<Boolean>, maxDepth: Int, numberOfPresses: Int = 0): Int {
+    if (numberOfPresses > maxDepth) return Int.MAX_VALUE
+    if (lights == machine.lightDiagram) return 0
+    if (memory.contains(lights)) return memory.getValue(lights)
 
-    machine.buttons[pressButton].forEach { newLights[it] = !newLights[it] }
-    var lowestNumPresses = 100
-    for (index in machine.buttons.indices) {
-        val numPresses = pressButtons(machine, newLights, previousMin, index, numberOfPresses + 1)
-        if (numPresses < lowestNumPresses) lowestNumPresses = numPresses
+    var lowestPressesFromHere = Int.MAX_VALUE
+    for (button in machine.buttons) {
+        val newLights = lights.toMutableList()
+        button.forEach { newLights[it] = !newLights[it] }
+
+        val numPresses = pressButtons(memory, machine, newLights, maxDepth, numberOfPresses + 1)
+        if (numPresses < lowestPressesFromHere) lowestPressesFromHere = numPresses
     }
-    return lowestNumPresses
+    if (lowestPressesFromHere == Int.MAX_VALUE) return Int.MAX_VALUE
+    memory[lights] = lowestPressesFromHere + 1
+    return lowestPressesFromHere + 1
 }
 
 data class Machine(val lightDiagram: List<Boolean>, val buttons: List<List<Int>>, val joltages: List<Int>)
